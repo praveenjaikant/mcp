@@ -1,0 +1,38 @@
+[project]
+name = "awslabs.s3-vectors-mcp-server"
+version = "0.1.0"
+description = "A Model Context Protocol server for AWS S3 Vectors"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{name = "Amazon Web Services"}]
+license = { text = "Apache-2.0" }
+classifiers = [
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+]
+dependencies = [
+    "mcp[cli]>=1.11.0",
+    "pydantic>=2.10.6",
+    "boto3>=1.34.0",
+]
+
+[project.scripts]
+"awslabs.s3-vectors-mcp-server" = "awslabs.s3_vectors_mcp_server.server:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.commitizen]
+name = "cz_conventional_commits"
+version = "0.0.0"
+tag_format = "v$version"
+version_files = [
+  "pyproject.toml:version",
+  "awslabs/s3_vectors_mcp_server/__init__.py:__version__"
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--cov=awslabs.s3_vectors_mcp_server --cov-report=term-missing"
